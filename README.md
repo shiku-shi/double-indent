@@ -1,14 +1,15 @@
-[![ci](https://github.com/jkittner/double-indent/workflows/ci/badge.svg)](https://github.com/jkittner/double-indent/actions?query=workflow%3Aci)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/jkittner/double-indent/master.svg)](https://results.pre-commit.ci/latest/github/jkittner/double-indent/master)
-[![codecov](https://codecov.io/gh/jkittner/double-indent/branch/master/graph/badge.svg)](https://codecov.io/gh/jkittner/double-indent)
+# double-indent-shiku
 
-# double-indent
+A code formatter to add double indentation to function and method definitions,
+also calls in `if` and `for` statements. Original repository:
+https://github.com/theendlessriver13/double-indent/
 
-A code formatter to add double indentation to function and method definitions.
+Forked to met internal formatting requirements. Meant to be used after
+[black](https://github.com/psf/black).
 
 ## Installation
 
-`pip install double-indent`
+`pip install double-indent-shiku`
 
 ## usage
 
@@ -22,19 +23,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -i INDENT, --indent INDENT
                         number of spaces for indentation
-```
-
-## pre-commit hook
-
-See [pre-commit](https://pre-commit.com) for instructions
-
-Sample `.pre-commit-config.yaml`:
-
-```yaml
-- repo: https://github.com/jkittner/double-indent
-  rev: 0.1.4
-  hooks:
-    - id: double-indent
 ```
 
 ## indent function and method definitions twice
@@ -58,4 +46,24 @@ Sample `.pre-commit-config.yaml`:
 +            arg,
      ):
          ...
+```
+
+```diff
+for value in values(
+-   arg,
+-   arg2,
++       arg,
++       arg2,
+):
+    ...
+```
+
+```diff
+if values(
+-   arg,
+-   arg2,
++       arg,
++       arg2,
+):
+    ...
 ```
