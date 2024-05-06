@@ -56,11 +56,9 @@ def _fix_indent(
     idx = start
     while idx < end - 2:
         if tokens[idx].name == "NL":
-            if (
-                    tokens[idx + 1].name == "UNIMPORTANT_WS"
-                    and len(tokens[idx + 1].src) != (indent * 2) + offset
-            ):
-                new_indent = " " * ((indent * 2) + offset)
+            if tokens[idx + 1].name == "UNIMPORTANT_WS":
+                old_indent = tokens[idx + 1].src.count(" ")
+                new_indent = " " * (indent + old_indent)
                 tokens[idx + 1] = tokens[idx + 1]._replace(src=new_indent)
         idx += 1
 
